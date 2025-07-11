@@ -17,10 +17,11 @@ WARNING:
 USE master;
 GO
 ---Drop and recreate the "DateWarehouse' database
-IF EXISTS (SELECT 1 FROM sys.databases WHERE name='dataWarehouse')
-BEGIN
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name='dataWarehouse')//Checks if a database with the name 'dataWarehouse' exists in the server
+BEGIN//Runs the block only if the database exists
     ALTER DATABASE datawarehouse SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-    DROP DATABASE datawarehouse;
+    //Forces the database into SINGLE_USER mode, disconnecting all users immediately and rolling back their open transactions.
+    DROP DATABASE datawarehouse;//Deletes the database permanently.
 END
 ----create the "DateWarehouse' database
  CREATE DATABASE datawarehouse;
